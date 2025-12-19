@@ -1,10 +1,17 @@
-# K8s tools and util commands
+# MyKubernetesCluster
+This repository contains a simple Kubernates cluster that host a simple microservice written in JAVA Spring-Boot.
 
-## Tools
+The aim of the repository is to show the core concepts of Kubernates like Deployment, Service, Ingress...
+
+The application encompasses a MongoDB database and a web service.
+In the current file, below, there are some of common comand used to build the cluster.
+
+## K8s tools and util commands
+### Tools
 1. Kind 
 2. kubectl
 
-## Base Commands
+### Base Commands
 1. kind create cluster --name < cluster name > 
 2. kubectl get nodes
 3. kubectl cluster-info
@@ -24,13 +31,12 @@
 17. kubectl explain deployment
 18. kubectl get pvc <-- this command finds the volumes
 
-### Command to build a tunnel connection with my db inside cluster
+#### Command to build a tunnel connection with my db inside cluster
 kubectl port-forward svc/mongodb-service 27017:27017
 
-### Compass connection
+#### Compass connection
 mongodb://admin:mia-password-segreta@localhost:27017
 
 
-## Next step: Command for build a secret
-
+### Next step: Command for build a secret
 kubectl create secret generic mongodb-pass --from-literal=mongo-root-password=mia-password-segreta
