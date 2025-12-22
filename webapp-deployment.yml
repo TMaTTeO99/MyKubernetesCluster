@@ -1,0 +1,47 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-app
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: springboot-app
+  template:
+    metadata:
+      labels:
+        app: springboot-app
+    spec:
+      containers:
+      - name: springboot-app
+        image: tmatteo99/web-server-my-kubernetes-cluster:latest 
+        ports:
+        - containerPort: 8080 
+        env:
+        - name: MONGO_PASS
+          valueFrom:
+            secretKeyRef:
+              name: mongodb-pass
+              key: mongo-root-password
+        - name: MONGO_USER
+          value: "admin"
+        - name: MONGO_HOST
+          value: "mongodb-service"
+        - name: "MONGO_DB"
+          value: "mongospring"
+        - name: MONGO_PORT
+          value: "27017"
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: springboot-service
+spec:
+  selector:
+    app: springboot-app
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 8080
+  type: NodePort

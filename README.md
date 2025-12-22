@@ -1,10 +1,13 @@
 # MyKubernetesCluster
 This repository contains a simple Kubernates cluster that host a simple microservice written in JAVA Spring-Boot.
-
 The aim of the repository is to show the core concepts of Kubernates like Deployment, Service, Ingress...
+The application server used in the defined cluster here will be a docker image in my docker hub repository.
 
 The application encompasses a MongoDB database and a web service.
-In the current file, below, there are some of common comand used to build the cluster.
+At the end of the current file there are some of common comand used to build the cluster.
+
+## Notes about ingress
+The ingress present in this repo uses as ingress controller Nginx Ingress Controller.
 
 ## K8s tools and util commands
 ### Tools
